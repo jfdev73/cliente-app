@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="plantilla/template :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+	<div class="container">
+		<h1 th:text="${titulo}" class="text-center mt-3"></h1>
+	</div>
+	<div class="container">
+		<form th:object="${cliente}" th:action="@{/clientes/save}"
+			method="post">
+
+			<div class="row">
+				<label class="col-md-2" for="nombres">Nombre(s):</label>
+				<input type="text" class="form-control-sm col-md-4" id="nombres"
+					th:field="*{nombres}">
+				<small id="emailHelp" class="form-text text-center text-danger"
+					th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></small>
+			</div>
+
+			<div class="row">
+				<label class="col-md-2" for="apellidoPaterno">Apellido
+					Paterno:</label>
+				<input type="text" class="form-control-sm col-md-4"
+					id="apellidoPaterno" th:field="*{apellidoPaterno}">
+				<small id="emailHelp" class="form-text text-center text-danger"
+					th:if="${#fields.hasErrors('apellidoPaterno')}" th:errors="*{apellidoPaterno}"></small>
+			</div>
+
+			<div class="row">
+				<label class="col-md-2" for="apellidoMaterno">Apellido
+					Materno:</label>
+				<input type="text" class="form-control-sm col-md-4"
+					id="apellidoMaterno" th:field="*{apellidoMaterno}">
+				<small id="emailHelp" class="form-text text-center text-danger"
+					th:if="${#fields.hasErrors('apellidoMaterno')}" th:errors="*{apellidoMaterno}"></small>
+			</div>
+
+			<div class="row">
+				<label class="col-md-2" for="telefono">Telefono:</label>
+				<input type="text" class="form-control-sm col-md-4" id="telefono"
+					th:field="*{telefono}">
+				<small id="emailHelp" class="form-text text-center text-danger"
+					th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+			</div>
+
+			<div class="row">
+				<label class="col-md-2" for="email">Email:</label>
+				<input type="text" class="form-control-sm col-md-4" id="email"
+					th:field="*{email}">
+				<small id="emailHelp" class="form-text text-center text-danger"
+					th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+			</div>
+
+			<div class="row">
+				<label class="col-md-2" for="email">Ciudad:</label>
+				<select class="form-control-sm col-md-4" id="email"
+					th:field="*{ciudad}">
+					<option th:each="ciudad:${ciudades}" th:value="${ciudad.id}"
+						th:text="${ciudad.ciudad}"></option>
+				</select>
+
+			</div>
+
+			<div class="mt-2">
+				<button type="submit" class="btn btn-primary">Enviar</button>
+			</div>
+			<input type="hidden" th:field="*{id}" name="id">
+		</form>
+
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

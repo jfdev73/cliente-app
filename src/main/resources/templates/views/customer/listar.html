@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="plantilla/template :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+	<div class="container">
+		<h1 th:text="${titulo}" class="text-center mt-3"></h1>
+	</div>
+
+
+	<div class="container">
+		<a class="btn btn-primary btn-sm" th:href="@{/clientes/create}"
+			th:text="'Nuevo Cliente'" title="Crear nuevo registro"></a>
+		<table class="table mt-2">
+			<thead class="table-dark">
+				<tr class="text-center">
+					<td>Id</td>
+					<td>Nombres</td>
+					<td>Apellido Paterno</td>
+					<td>Apellido Materno</td>
+					<td>Telefono</td>
+					<td>Correo</td>
+					<td>Ciudad</td>
+					<td>Editar</td>
+					<td>Eliminar</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente:${clientes}" th:object="${cliente}"
+					class="text-center">
+					<th th:text="*{id}" scope="row"></th>
+					<td th:text="*{nombres}"></td>
+					<td th:text="*{apellidoPaterno}"></td>
+					<td th:text="*{apellidoMaterno}"></td>
+					<td th:text="*{telefono}"></td>
+					<td th:text="*{email}"></td>
+					<td th:text="*{ciudad.ciudad}"></td>
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/clientes/edit/}+*{id}" th:text="'Editar'"
+						title="Editar registro"></a></td>
+					<td><a class="btn btn-danger btn-sm"
+						th:href="@{/clientes/delete/}+*{id}" th:text="'Eliminar'"
+						title="Eliminar registro"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>
